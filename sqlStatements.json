@@ -1,0 +1,22 @@
+{
+	"getAllhomeworkSql":[
+		"select homeworkId, description, deadline, groupId, teacherId from homework"],
+	"getHomeworkSql":[
+		"select homeworkId, description, deadline, groupId, teacherId from homework",
+		"where homeworkId=?"
+	],
+	"inserthomeworkSql":[
+		"insert into homework (homeworkId, description, deadline, groupId, teacherId)",
+		"values(?,?,?,?,?)"
+	],
+	"deletehomeworkSql":[
+		"delete from homework where homeworkId=?"
+	],
+	"updatehomeworkSql":[
+		"update homework set description=?, deadline=?, groupId=?, teacherId=?",
+		"where homeworkId=?"
+	],
+	"getAllstudentHomeworkSql":[
+		"SELECT * FROM homework INNER JOIN student ON homework.groupId = student.groupId"
+	]
+}
