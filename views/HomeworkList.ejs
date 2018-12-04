@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link href="https://fonts.googleapis.com/css?family=Atma|Black+And+White+Picture|Indie+Flower|Patrick+Hand" rel="stylesheet">
+	<!-- <link rel="stylesheet" href="listing.css"> -->
+	<title>Homework Bot</title>
+</head>
+<script>
+
+	function addHomework(){
+		row = table.insertRow(-1);
+		var header = ['Homework Id', 'Description', 'deadline', 'status', 'Teacher'];
+		for (var j = 0; j < header.length; j++) {
+				var cell = row.insertCell(-1);
+				cell.contentEditable = true;
+				cell.innerHTML = `${header[j]}` ;
+		}
+		var btn = document.createElement('input');
+		btn.type = "button";
+		btn.innerHTML = "Save";
+		td.appendChild(btn);
+		console.log('new row created');
+document.getElementById("table").appendChild(tbody);
+	}
+
+</script>
+<body>
+	<section id="Features">
+		<div class="container">
+    <img src="./images/bot4.png" style="width: 20%; height: 20%;">
+		<center>
+			<h1>Homework listing</h1>
+			<table id="table">
+				<thead>
+					<tr>
+						<th>Homework Id</th>
+				    <th>Description</th>
+				    <th>Deadline</th>
+				    <th>Status</th>
+						<th>Teacher</th>
+						<th><Button class="bt-add-row btn btn-primary" onclick="addHomework()">Add</Button></th>
+				  </tr>
+				</thead>
+
+	<tbody id="tbody">
+		<% result.forEach(homework =>{ %>
+			<tr id="rows">
+				<td><%= homework.homeworkId %></td>
+				<td><%= homework.description %></td>
+				<td><%= homework.deadline %></td>
+				<td><%= homework.status %></td>
+				<td><%= homework.teacherId %></td>
+			</tr>
+		<%  }); %>
+	</tbody>
+</table>
+		</center>
+		</div>
+	</section>
+
+	<footer>
+		<p>Homework Bot &copy;2018</p>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">u
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link href="https://fonts.googleapis.com/css?family=Atma|Black+And+White+Picture|Indie+Flower|Patrick+Hand" rel="stylesheet">
+	<link rel="stylesheet" href="style_2.css">
+		<title><%= title %></title>
+</head>
+<body>
+
+	<section id="Features">
+		<div class="container">
+    <img src="./images/bot4.png">
+		<center>
+			<h1><%= header %></h1>
+			<form name="form" action="<%= action %>" method="post">
+				<div class="form-input">
+					Group <input id="group" type="text" name="groupid" placeholder="group" 	value="<%= groupId.value%>" <%= groupId.readonly%>><br>
+					Homework description<br>
+					<input id="description" type="text" name="description" placeholder="decription"value="<%= description.value%>" <%= description.readonly%>><br>
+					Deadline <input id="date" type="date" name="date" placeholder="date" 	value="<%= deadline.value%>" <%= deadline.readonly%>>
+					<button type="submit" href="#" class="loginbutton">Submit</button>
+				</div>
+
+			</form>
+		</center>
+		</div>
+	</section>
+
+	<footer>
+		<p>Homework Bot &copy;2018</p>
+	</footer>
+</body>
+</html>
