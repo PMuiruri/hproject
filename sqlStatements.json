@@ -1,7 +1,7 @@
 {
 	"getAllhomeworkSql":[
 		"select homeworkId, description, deadline, groupId, teacherId from homework"],
-	"getHomeworkSql":[
+	"gethomeworkSql":[
 		"select homeworkId, description, deadline, groupId, teacherId from homework",
 		"where homeworkId=?"
 	],
