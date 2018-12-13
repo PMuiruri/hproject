@@ -11,16 +11,6 @@ const initRoutes = function(storage, sendErrorPage){
 			.catch(err => sendErrorPage(res, err.message));
 	});
 
-	routes.post('/all', (req,res) =>{
-		if(!req.body){
-			res.sendStatus(401);
-		} else{
-			dataStorage.insert(req.body)
-				.then(message => sendStatusPage(res, message))
-				.catch(err => sendErrorPage(res, err.message));
-		}
-	});
-
 	routes.get('/allStudents', (req,res)=>{
 		dataStorage.getAllStudent()
       .then(result => res.send(JSON.stringify(result)))

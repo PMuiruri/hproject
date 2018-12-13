@@ -43,13 +43,13 @@ const statushandling =[sendErrorPage, sendStatusPage];
 
 const getroutes = require('./routes/getroute')(homeworkStorage,...statushandling);
 const insertroutes = require('./routes/insertroute')(homeworkStorage,...statushandling);
+const deleteroutes = require('./routes/deleteroute')(homeworkStorage,...statushandling);
+const updatesroutes = require('./routes/updateroutes')(homeworkStorage,...statushandling);
 
 app.use('/', getroutes);
 app.use('/', insertroutes);
-
-// {app.get('/', function(req, res) {
-//     res.json('here');
-// });}
+app.use('/', deleteroutes);
+app.use('/', updatesroutes);
 
 server.listen(port, host, () =>
 	console.log(`Sever ${host} is serving at port ${port}`)

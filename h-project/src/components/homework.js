@@ -11,29 +11,19 @@ class HomeworkList extends Component {
 			data: []
 		}
 	}
+
 	handleSubmit = (e) => {
 
 		e.preventDefault();
+		let data = this.state.data;
 		let homework = {
-			homeworkId: 8,
+			homeworkId: parseInt(e.target.homeworkId.value),
 			description: e.target.description.value,
 			deadline: e.target.deadline.value,
 			groupId: "null",
 			teacherId: e.target.teacherId.value
 		}
-		this.state.data.push(homework);
-		console.log(homework);
-
-
-	// 	fetch('http://localhost:4000/insert', {
-	// 					 method: 'POST',
-	// 					 headers : {"Content-Type":"application/json"},
-	// 					 body: data
-	// 				 })
-	// 			 .then((res) => res.json())
-	// 			 .then((data) =>  console.log(data))
-	// 			 .catch((err)=>console.log(err))
-	// }
+		data.push(homework);
 
 	fetch('http://localhost:4000/insert', {
   method: 'post',
@@ -45,6 +35,9 @@ class HomeworkList extends Component {
 	.then(res => res.json())
   .then(res => alert(res))
 	.catch((err)=>console.log(err));
+
+	this.setState({data: data})
+
 }
 
 fetchData =()=>{
