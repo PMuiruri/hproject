@@ -12,7 +12,7 @@ class Navbar extends Component {
 			<Router>
 				<div>
 					<ul>
-						<li><Link to="/">Homework</Link></li>
+						<li><Link to="/">Home</Link></li>
 						<li><Link to="/students">Students</Link></li>
 						<li><Link to="/homework">Homework</Link></li>
 					</ul>
