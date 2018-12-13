@@ -14,7 +14,7 @@ app.use(express.json());
 
 // Website you wish to allow to connect
 app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');  // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3001');  // Request methods you wish to allow
 
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');  // Request headers you wish to allow
 
@@ -43,13 +43,15 @@ const statushandling =[sendErrorPage, sendStatusPage];
 
 const getroutes = require('./routes/getroute')(homeworkStorage,...statushandling);
 const insertroutes = require('./routes/insertroute')(homeworkStorage,...statushandling);
+const deleteroutes = require('./routes/deleteroute')(homeworkStorage,...statushandling);
+const updatesroutes = require('./routes/updateroutes')(homeworkStorage,...statushandling);
 
 app.use('/', getroutes);
 app.use('/', insertroutes);
+app.use('/', deleteroutes);
+app.use('/', updatesroutes);
 
-// {app.get('/', function(req, res) {
-//     res.json('here');
-// });}
+app.get('/', (req,res) => res.sendFile(path.join(__dirname,'index.html')));
 
 server.listen(port, host, () =>
 	console.log(`Sever ${host} is serving at port ${port}`)

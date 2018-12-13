@@ -14,19 +14,38 @@ class HomeworkList extends Component {
 	handleSubmit = (e) => {
 
 		e.preventDefault();
-		let homework ={ homeworkId:e.target.homeworkId.value, description:e.target.description.value, deadline: e.target.deadline.value, teacherId:e.target.teacherId}
+		let homework = {
+			homeworkId: 8,
+			description: e.target.description.value,
+			deadline: e.target.deadline.value,
+			groupId: "null",
+			teacherId: e.target.teacherId.value
+		}
 		this.state.data.push(homework);
 		console.log(homework);
 
-		fetch('http://localhost:4000/insert', {
-						 method: 'POST',
-						 headers : {"Content-Type":"application/json"},
-						 body: '{"test: "Test"}'
-					 })
-				 .then((res) => res.json())
-				 .then((data) =>  console.log(data))
-				 .catch((err)=>console.log(err))
-	}
+
+	// 	fetch('http://localhost:4000/insert', {
+	// 					 method: 'POST',
+	// 					 headers : {"Content-Type":"application/json"},
+	// 					 body: data
+	// 				 })
+	// 			 .then((res) => res.json())
+	// 			 .then((data) =>  console.log(data))
+	// 			 .catch((err)=>console.log(err))
+	// }
+
+	fetch('http://localhost:4000/insert', {
+  method: 'post',
+  headers: {
+    'Accept': 'application/json, text/plain, */*',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(homework)})
+	.then(res => res.json())
+  .then(res => alert(res))
+	.catch((err)=>console.log(err));
+}
 
 fetchData =()=>{
 	fetch('http://localhost:4000/all')
@@ -42,17 +61,16 @@ fetchData =()=>{
 
 	render() {
 		let rows = this.state.data.map(person =>{
-			return <TableRow key={person.id} data ={person} />
+			return <TableRow key={person.id} data={person} />
 		});
+
 		return (
 			<div className="container">
 			<h1>Homework listing</h1>
 			<Form handleSubmit={this.handleSubmit} />
 			<table id="table">
-			<table>
 				<TableHead />
 					<tbody>{rows}</tbody>
-			</table>
 			</table>
 			</div>
 		);

@@ -25,6 +25,7 @@ class homeworkDatabase{
 			try{
 				let result= await this.homeworkDb.doQuery(allSql);
 				resolve(result);
+
 			}
 			catch(err){
 				reject(fatalError(err));
@@ -68,15 +69,17 @@ class homeworkDatabase{
 			try{
 				let result = await this.homeworkDb.doQuery(insertSql,
 					+homework.homeworkId,
-					homework.desription,
+					homework.description,
 					homework.deadline,
 					homework.groupId,
 					homework.teacherId
 				);
+				console.log(result);
 				if(result.affectedRows===0){
 					reject(new Error('No homework was added'));
 				} else{
 					resolve(`homework with id ${homework.homeworkId} was added`);
+					console.log('Done');
 				}
 			}
 			catch(err){

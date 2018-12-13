@@ -9,6 +9,7 @@
   "author": "Pennina Milla",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "express-fileupload": "^1.0.0",
