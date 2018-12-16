@@ -1,9 +1,6 @@
 form{
+	
 	width: 100%;
 	height:auto;
 	padding: 3%;
-}
-
-input, label{
-	width: 10%;
 }
