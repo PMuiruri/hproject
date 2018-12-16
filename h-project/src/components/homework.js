@@ -12,18 +12,23 @@ class HomeworkList extends Component {
 		}
 	}
 
+	fetchData =()=>{
+		fetch('http://localhost:4000/all')
+			.then(response => response.json())
+			.then(data => this.setState({ data: data }))
+			.catch(err => console.log(err));
+	}
+
 	handleSubmit = (e) => {
 
 		e.preventDefault();
 		let data = this.state.data;
 		let homework = {
-			homeworkId: parseInt(e.target.homeworkId.value),
 			description: e.target.description.value,
 			deadline: e.target.deadline.value,
 			groupId: "null",
 			teacherId: e.target.teacherId.value
 		}
-		data.push(homework);
 
 	fetch('http://localhost:4000/insert', {
   method: 'post',
@@ -33,28 +38,53 @@ class HomeworkList extends Component {
   },
   body: JSON.stringify(homework)})
 	.then(res => res.json())
-  .then(res => alert(res))
+  .then(res =>{
+		homework.homeworkId=res;
+		data.push(homework);
+		alert(res);
+		this.setState({data:data})
+	})
 	.catch((err)=>console.log(err));
-
-	this.setState({data: data})
-
 }
 
-fetchData =()=>{
-	fetch('http://localhost:4000/all')
-		.then(response => response.json())
-		.then(data => this.setState({ data: data }))
-		.catch(err => console.log(err));
-}
-
-  componentDidMount() {
+componentDidMount() {
   	this.fetchData();
   }
 
+ handleDeleteRow = (id) =>{
+	 let array = this.state.data;
+
+	 const result = array.filter(item => item.homeworkId !== 1)
+			alert(result);
+			this.setState({data:result})
+ }
+handleSave = (save) =>{
+	let update = this.state.data;
+	let index = update.findIndex(x=> x.homeworkId === save.homeworkId);
+console.log(index);
+	fetch('http://localhost:4000/update', {
+  method: 'post',
+  headers: {
+    'Accept': 'application/json, text/plain, */*',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(save)})
+	.then(res => res.json())
+  .then(res =>{
+		console.log(index);
+		update[index]= save;
+		console.log(update);
+		this.setState({data: update});
+		alert(res);
+	})
+	.catch((err)=>console.log(err));
+
+
+}
 
 	render() {
 		let rows = this.state.data.map(person =>{
-			return <TableRow key={person.id} data={person} />
+			return <TableRow key={person.id} data={person} handleDeleteRow ={this.handleDeleteRow} handleSave={this.handleSave} />
 		});
 
 		return (
@@ -63,7 +93,7 @@ fetchData =()=>{
 			<Form handleSubmit={this.handleSubmit} />
 			<table id="table">
 				<TableHead />
-					<tbody>{rows}</tbody>
+					{rows}
 			</table>
 			</div>
 		);
