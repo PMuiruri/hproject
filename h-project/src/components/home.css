@@ -1,0 +1,128 @@
+body{
+	font-family: 'Patrick Hand', cursive;
+	font-size: 16px;
+	padding: 0;
+	margin: 0;
+	background-image: url("/images/background3.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: white;
+}
+/* Global */
+.container{
+	width: 100%;
+	margin: auto;
+	overflow: hidden;
+}
+.grid-2{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-column-gap: 2%;
+}
+.left{
+	grid-column:1;
+
+}
+.right{
+	grid-column:2;
+}
+
+ul{
+	margin: 0;
+	padding: 0;
+}
+h2{
+	padding: 2%;
+	text-align: center;
+	text-rendering: optimizeLegibility;
+	border-bottom: 2px groove #E2E2E2;
+}
+.main-nav{
+	top: 0;
+	position: fixed;
+	width: 80%;
+	height: 10%;
+	padding: 1% 0;
+}
+header{
+	min-height: 100px;
+}
+header a{
+	text-decoration: none;
+	color: white;
+}
+header li{
+	display: inline;
+	padding: 0 20px 0 20px;
+	font-size: 16px;
+}
+header #branding{
+	float: left;
+}
+header #branding h1{
+	margin: 0;
+}
+header nav{
+	float: right;
+	margin-top: 20px;
+
+}
+header .highlight, header .active a{
+	border-bottom: solid 5px orange;
+}
+header a:hover{
+	border-bottom: solid 5px red;
+	font-weight: bold;
+}
+.hello{
+	align-content: center;
+}
+.bot-img{
+	height: 360px;
+	width: 280px;
+	background-image: url("/images/bot4.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	margin-top: 1rem;
+}
+.hello p{
+	color: white;
+	height: auto;
+	width: 60%;
+}
+.typewriter{
+	padding: 0 15%;
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid orange; /* The typwriter cursor */
+	white-space: nowrap;
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em; /* Adjust as needed */
+  animation:
+    typing 3.5s steps(40, end),
+    blink-caret .75s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0% }
+  to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+}
+.btn{
+	width: 10%;
+	border: 5px solid white;
+	background: #34b3ao;
+	color: white;
+	font-size: 1.2rem;
+	padding: 1rem;
+	text-decoration: none;
+	margin-left: 2%;
+}
+footer{
+	margin-top: 2rem;
+	text-align: center;
+}

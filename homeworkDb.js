@@ -25,6 +25,7 @@ class homeworkDatabase{
 			try{
 				let result= await this.homeworkDb.doQuery(allSql);
 				resolve(result);
+
 			}
 			catch(err){
 				reject(fatalError(err));
@@ -47,7 +48,7 @@ class homeworkDatabase{
 		});
 	}
 
-	get(homeworkId){
+	gethomework(homeworkId){
 		return new Promise(async (resolve, reject)=>{
 			try{
 				let result= await this.homeworkDb.doQuery(homeworkSql, +homeworkId);
@@ -67,19 +68,24 @@ class homeworkDatabase{
 		return new Promise(async (resolve,reject)=>{
 			try{
 				let result = await this.homeworkDb.doQuery(insertSql,
-					+homework.homeworkId,
-					homework.desription,
+					homework.description,
 					homework.deadline,
 					homework.groupId,
 					homework.teacherId
 				);
+
+				console.log(result);
 				if(result.affectedRows===0){
 					reject(new Error('No homework was added'));
+					console.log(result)
 				} else{
-					resolve(`homework with id ${homework.homeworkId} was added`);
+					resolve(result.insertId);
+
+					console.log('Done');
 				}
 			}
 			catch(err){
+				console.log('erroorr')
 				reject(fatalError(err));
 			}
 		});
@@ -88,7 +94,7 @@ class homeworkDatabase{
 	update(homework){
 		return new Promise(async (resolve,reject)=>{
 			try{
-				let result = await this.homeworkDb.doQuery(updateSql, homework.desription, homework.deadline, homework.groupId, homework.teacherId, +homework.homeworkId);
+				let result = await this.homeworkDb.doQuery(updateSql, homework.description, homework.deadline, homework.teacherId, +homework.homeworkId);
 				if(result.affectedRows===0){
 					reject(new Error(`No homework with id ${homework.homeworkdata} was found. No data was updated`));
 				} else{
@@ -105,6 +111,7 @@ class homeworkDatabase{
 		return new Promise(async (resolve, reject) =>{
 			try{
 				let result = await this.homeworkDb.doQuery(deleteSql, +homeworkId);
+				console.log(result);
 				if(result.affectedRows===0){
 					reject(new Error(`No homework with given Id ${homeworkId}. Nothing was deleted`));
 				} else{

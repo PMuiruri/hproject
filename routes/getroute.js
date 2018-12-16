@@ -7,41 +7,32 @@ const initRoutes = function(storage, sendErrorPage){
 
 	routes.get('/all', (req,res)=>{
 		dataStorage.getAll()
-			.then(result => res.render('HomeworkList', {result: result}))
+			.then(result => res.send(JSON.stringify(result)))
 			.catch(err => sendErrorPage(res, err.message));
-	});
-
-	routes.post('/all', (req,res) =>{
-		if(!req.body){
-			res.sendStatus(401);
-		} else{
-			dataStorage.insert(req.body)
-				.then(message => sendStatusPage(res, message))
-				.catch(err => sendErrorPage(res, err.message));
-		}
 	});
 
 	routes.get('/allStudents', (req,res)=>{
 		dataStorage.getAllStudent()
-			.then(result => res.render('HomeworkList', {result: result}))
+      .then(result => res.send(JSON.stringify(result)))
 			.catch(err => sendErrorPage(res, err.message));
+			console.log(result);
 	});
 
-	routes.get('/gethomerwork', (req,res)=>
-		res.render('gethomerwork', {
+	routes.get('/gethomework', (req,res)=>
+		res.render('gethomework', {
 			title:'Get',
 			header:'Get',
-			action:'/gethomerwork'
+			action:'/gethomework'
 		})
 	);
 
-	routes.post('/gethomerwork', (req,res) =>{
+	routes.post('/gethomework', (req,res) =>{
 		if(!req.body){
 			res.sendStatus(401);
 		} else{
 			let homeworkId = req.body.homerworkId;
 			dataStorage.get(homeworkId)
-				.then(homework => res.render('homeworkPage', {homework}))
+				.then(result => res.send(JSON.stringify(result)))
 				.catch(err => sendErrorPage (res, err.message, 'homework Error', 'Oops!'));
 		}
 	});

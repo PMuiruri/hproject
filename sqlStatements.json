@@ -6,14 +6,14 @@
 		"where homeworkId=?"
 	],
 	"inserthomeworkSql":[
-		"insert into homework (homeworkId, description, deadline, groupId, teacherId)",
-		"values(?,?,?,?,?)"
+		"insert into homework ( description, deadline, groupId, teacherId)",
+		"values(?,?,?,?)"
 	],
 	"deletehomeworkSql":[
 		"delete from homework where homeworkId=?"
 	],
 	"updatehomeworkSql":[
-		"update homework set description=?, deadline=?, groupId=?, teacherId=?",
+		"update homework set description=?, deadline=?, teacherId=?",
 		"where homeworkId=?"
 	],
 	"getAllstudentHomeworkSql":[
