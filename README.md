@@ -3,7 +3,11 @@ This is a simple app to help children manage their homework. With the app a teac
 
 
 Getting started
+
 install all dependancies
+run npm start
+start node server
+start the mysql database
 
 Deployment
 npm run build
