@@ -3,18 +3,17 @@ This is a simple app to help children manage their homework. With the app a teac
 
 ## Getting started
 - install all dependancies
-- `run npm start`
-- start node server
+- run `npm start`
+- start node server using command `node index`
 - start the mysql database
+- The app can be accessed on http://localhost:3000
 
 ## Deployment
-npm run build
+`npm run build`
 
 ## Build With
-
 ReactJS
 Node & Express
 
 ## To be implemented
-
 Children can vote for a questions in the homework that they struggled the most with and the teacher can the review it in class
