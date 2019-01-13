@@ -24,7 +24,9 @@ const initRoutes = function(storage, sendErrorPage, sendStatusPage){
 		} else{
 			dataStorage.insert(req.body)
 				.then(message => res.send(JSON.stringify(message)))
-				.catch(err => res.send(JSON.stringify(err)));
+				.catch((err) => {res.send(err); console.log("hello");
+
+				});
 		}
 	});
 	return routes;

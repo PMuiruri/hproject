@@ -8,13 +8,13 @@ const initRoutes = function(storage, sendErrorPage){
 	routes.get('/all', (req,res)=>{
 		dataStorage.getAll()
 			.then(result => res.send(JSON.stringify(result)))
-			.catch(err => sendErrorPage(res, err.message));
+			.catch(err => res.send(res, err.message));
 	});
 
 	routes.get('/allStudents', (req,res)=>{
 		dataStorage.getAllStudent()
       .then(result => res.send(JSON.stringify(result)))
-			.catch(err => sendErrorPage(res, err.message));
+			.catch(err => res.send(res, err.message));
 			console.log(result);
 	});
 
@@ -33,9 +33,31 @@ const initRoutes = function(storage, sendErrorPage){
 			let homeworkId = req.body.homerworkId;
 			dataStorage.get(homeworkId)
 				.then(result => res.send(JSON.stringify(result)))
-				.catch(err => sendErrorPage (res, err.message, 'homework Error', 'Oops!'));
+				.catch(err => res.send (res, err.message, 'homework Error', 'Oops!'));
 		}
 	});
+
+	routes.post('/getteacher', (req,res) =>{
+		if(!req.body){
+			res.sendStatus(401);
+		} else{
+			let teacherId = req.body.teacherId;
+			dataStorage.getTeacher(teacherId)
+			.then(result => res.send(JSON.stringify(result)))
+			.catch(err => res.send(res, err.message));
+		}
+	});
+
+routes.post('/getstudent', (req,res) =>{
+	if(!req.body){
+		res.sendStatus(401);
+	} else{
+		let studentId = req.body.studentId;
+		dataStorage.getStudent(studentId)
+		.then(result => res.send(JSON.stringify(result)))
+		.catch(err => res.send(res, err.message));
+	}
+});
 	return routes;
 };
 

@@ -5,6 +5,9 @@
 		"select homeworkId, description, deadline, groupId, teacherId from homework",
 		"where homeworkId=?"
 	],
+	"gethomeworkGroup":[
+		"SELECT * FROM `homework` WHERE `groupId` LIKE grouId=? ORDER BY `homeworkId` ASC"
+	],
 	"inserthomeworkSql":[
 		"insert into homework ( description, deadline, groupId, teacherId)",
 		"values(?,?,?,?)"
@@ -18,5 +21,11 @@
 	],
 	"getAllstudentHomeworkSql":[
 		"SELECT * FROM homework INNER JOIN student ON homework.groupId = student.groupId"
+	],
+	"getStudentHomework":[
+		"SELECT * FROM `homework`,`student` WHERE student.studentId=? AND student.groupId = homework.groupId "
+	],
+	"getTeacherHomework":[
+		"SELECT * FROM `homework` WHERE teacherId=?"
 	]
 }

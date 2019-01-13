@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import './homework.css'
 import TableHead from './tableHead';
 import TableRow from './tableRow';
 import Form from './form';
+import Sidebar from './sidebar';
 
 class HomeworkList extends Component {
 	constructor(){
 		super();
 		this.state={
-			data: []
+			data: [],
+			image:"/images/bot3.png"
 		}
 	}
 
@@ -19,8 +20,7 @@ class HomeworkList extends Component {
 			.catch(err => console.log(err));
 	}
 
-	handleSubmit = (e) => {
-
+	handleAddSubmit = (e) => {
 		e.preventDefault();
 		let data = this.state.data;
 		let homework = {
@@ -53,10 +53,12 @@ componentDidMount() {
 
  handleDeleteRow = (id) =>{
 	 let array = this.state.data;
+	 let deleteId = parseInt(id);
 
-	 const result = array.filter(item => item.homeworkId !== 1)
-			alert(result);
+
+	 const result = array.filter(item => item.homeworkId !== deleteId)
 			this.setState({data:result})
+			console.log(result)
  }
 handleSave = (save) =>{
 	let update = this.state.data;
@@ -78,23 +80,23 @@ console.log(index);
 		alert(res);
 	})
 	.catch((err)=>console.log(err));
-
-
 }
-
 	render() {
-		let rows = this.state.data.map(person =>{
-			return <TableRow key={person.id} data={person} handleDeleteRow ={this.handleDeleteRow} handleSave={this.handleSave} />
+		let rows = this.state.data.map((person, index) =>{
+			return <TableRow key={index} data={person} handleDeleteRow ={this.handleDeleteRow} handleSave={this.handleSave} />
 		});
 
 		return (
 			<div className="container">
 			<h1>Homework listing</h1>
-			<Form handleSubmit={this.handleSubmit} />
+			<Sidebar imageURL={this.state.image}/>
+			<div>
+			<Form handleAddSubmit={this.handleAddSubmit} />
 			<table id="table">
 				<TableHead />
 					{rows}
 			</table>
+			</div>
 			</div>
 		);
 	}

@@ -4,16 +4,18 @@ class Home extends Component {
 
 	render() {
 		return (
+
+			<center>
+			<p className="typewriter">Hi my name is homework bot and I am here to help you with your homework </p>
+			<div className="bot-img"></div>
+			<p>Please select one</p>
+			<br />
 			<div>
-			<div class="hello">
-			<p class="typewriter">Hi my name is homework bot and I am here to help you remember your homework </p>
-			<center>
-			<div class="bot-img"></div>
+				<span className='selection'>Student</span>
+				<span className='selection'>Parent</span>
+				<span className='selection'>Teacher</span>
+			</div>
 			</center>
-			</div>
-			<center>
-			<div class="btn">Login/Sign Up</div></center>
-			</div>
 		);
 	}
 

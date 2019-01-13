@@ -5,7 +5,8 @@ class TableRow  extends Component {
 	constructor(){
 		super();
 		this.state ={
-			edit: false
+			edit: false,
+			student: false,
 		}
 	}
 
@@ -50,27 +51,36 @@ class TableRow  extends Component {
 
 	render() {
 		let row;
-		if(this.state.edit === false){
+
+		if(this.state.edit === false && this.state.student === false){
 		row =
 		<tr>
-		<td>{this.props.data.homeworkId}</td>
-		<td>{this.props.data.description}</td>
-		<td>{this.props.data.deadline} </td>
-		<td>{this.props.data.teacherId} </td>
-		<td><button type="submit" onClick={this.handleEdit}>Edit</button></td>
-		<td><button type="submit" value ={this.props.data.homeworkId} onClick={this.props.handleDelete}>Delete</button></td>
+			<td>{this.props.data.homeworkId}</td>
+			<td>{this.props.data.description}</td>
+			<td>{this.props.data.deadline} </td>
+			<td>{this.props.data.teacherId} </td>
+			<td><button className="rowbutton" type="submit" onClick={this.handleEdit}>Edit</button></td>
+			<td><button className="rowbutton" type="submit" value ={this.props.data.homeworkId} onClick={this.handleDelete}>Delete</button></td>
 		</tr>
 		}
-		else{
+		else if(this.state.student === true){
 			row =
-				<tr>
-					<td>{this.props.data.homeworkId}</td>
-					<td><input type="text" name="description" ref={(value)=>{this.description=value}} defaultValue={this.props.data.description} /></td>
-					<td><input type="text" name="deadline" ref={(value)=>{this.deadline=value}} defaultValue={this.props.data.deadline} /></td>
-					<td>{this.props.data.teacherId}</td>
-					<td><button  type="submit" onClick={this.handleCancel} >Cancel</button></td>
-					<td><button  type="submit" onClick={this.handleSave} value={this.props.id}>Save</button></td>
-				</tr>
+			<tr>
+				<td>{this.props.data.homeworkId}</td>
+				<td>{this.props.data.description}</td>
+				<td>{this.props.data.deadline} </td>
+				<td><button className="rowbutton" type="submit" onClick={this.handleEdit}>Done</button></td>
+			</tr>
+		} else{
+			 row =
+			 <tr>
+				<td>{this.props.data.homeworkId}</td>
+				<td><input type="text" name="description" ref={(value)=>{this.description=value}} defaultValue={this.props.data.description} /></td>
+				<td><input type="text" name="deadline" ref={(value)=>{this.deadline=value}} defaultValue={this.props.data.deadline} /></td>
+				<td>{this.props.data.teacherId}</td>
+				<td><button className="rowbutton" type="submit" onClick={this.handleCancel} >Cancel</button></td>
+				<td><button className="rowbutton" type="submit" onClick={this.handleSave} value={this.props.id}>Save</button></td>
+			</tr>
 		}
 
 		return (

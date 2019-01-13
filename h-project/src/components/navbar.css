@@ -1,15 +1,16 @@
 nav{
 	top: 0;
 	position: fixed;
-	background: white;
-	height: 10%;
+	height: 15%;
 	padding: 1% 0;
+	color: white;
 }
 a{
 	text-decoration: none;
-	color: black;
+	color: yellow;
 }
-li{
+ul, li{
+	text-align: justify;
 	display: inline;
 	padding: 0 20px 0 20px;
 	font-size: 16px;
