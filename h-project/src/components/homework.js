@@ -9,17 +9,17 @@ class HomeworkList extends Component {
 		super();
 		this.state={
 			data: [],
-			image:"/images/bot3.png"
+			image:"/images/bot6.png"
 		}
 	}
-
+//Fetch call to get all homework available
 	fetchData =()=>{
 		fetch('http://localhost:4000/all')
 			.then(response => response.json())
 			.then(data => this.setState({ data: data }))
 			.catch(err => console.log(err));
 	}
-
+//Function to add a new homework
 	handleAddSubmit = (e) => {
 		e.preventDefault();
 		let data = this.state.data;
@@ -29,7 +29,7 @@ class HomeworkList extends Component {
 			groupId: "null",
 			teacherId: e.target.teacherId.value
 		}
-
+	//Fetch call to add/insert new homework to database
 	fetch('http://localhost:4000/insert', {
   method: 'post',
   headers: {
@@ -46,11 +46,11 @@ class HomeworkList extends Component {
 	})
 	.catch((err)=>console.log(err));
 }
-
+//First call to render page data
 componentDidMount() {
   	this.fetchData();
   }
-
+//Function to delete a single row
  handleDeleteRow = (id) =>{
 	 let array = this.state.data;
 	 let deleteId = parseInt(id);
@@ -60,10 +60,12 @@ componentDidMount() {
 			this.setState({data:result})
 			console.log(result)
  }
+ //Function to save any new changes
 handleSave = (save) =>{
 	let update = this.state.data;
 	let index = update.findIndex(x=> x.homeworkId === save.homeworkId);
 console.log(index);
+	//Fetch call to save data to database
 	fetch('http://localhost:4000/update', {
   method: 'post',
   headers: {
@@ -88,11 +90,10 @@ console.log(index);
 
 		return (
 			<div className="container">
-			<h1>Homework listing</h1>
-			<Sidebar imageURL={this.state.image}/>
-			<div>
 			<Form handleAddSubmit={this.handleAddSubmit} />
-			<table id="table">
+			<div style={{width:'900px'}}>
+			<Sidebar imageURL={this.state.image}/>
+			<table>
 				<TableHead />
 					{rows}
 			</table>

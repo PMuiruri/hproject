@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import './home.css';
+import './styles/home.css';
+
 
 class Form extends Component {
 constructor(){
@@ -11,16 +12,16 @@ constructor(){
 	}
 }
 	render() {
-
+		//Component that creates a new form
 		return (
 			<form onSubmit={this.props.handleAddSubmit} >
 			<span>
-				<label>Description: <input type="text" name="description" value={this.props.description} onChange={this.props.handleChange} /></label>
-				<label>Deadline: <input type="text" name="deadline" value={this.props.deadline} onChange={this.props.handleChange}/></label>
-				<label>teacherId: <input type="text" name="teacherId" value={this.props.teacherId} onChange={this.props.handleChange}/></label>
+				<input type="text" placeholder="Description" name="description" value={this.props.description} onChange={this.props.handleChange} />
+				<input type="text" placeholder="Deadline" name="deadline" value={this.props.deadline} onChange={this.props.handleChange}/>
+				<input type="text" placeholder="Teacher Id" name="teacherId" value={this.props.teacherId} onChange={this.props.handleChange}/>
 				<button className="rowbutton" type="submit">New </button>
 				<button className="rowbutton" type="submit">Search </button>
-			</span>
+				</span>
 			</form>
 		);
 	}

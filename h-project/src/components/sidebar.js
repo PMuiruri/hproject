@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './sidebar.css';
+import './styles/sidebar.css';
 import PageImage from './image';
 
 class Sidebar extends Component {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './row.css';
+import './styles/row.css';
 
 class TableRow  extends Component {
 	constructor(){
@@ -7,6 +7,10 @@ class TableRow  extends Component {
 		this.state ={
 			edit: false,
 			student: false,
+			editIcon: '/images/edit.png',
+			deleteIcon: '/images/bin.png',
+			saveIcon:'/images/save.png',
+			cancelIcon:'/images/close.png'
 		}
 	}
 
@@ -59,8 +63,8 @@ class TableRow  extends Component {
 			<td>{this.props.data.description}</td>
 			<td>{this.props.data.deadline} </td>
 			<td>{this.props.data.teacherId} </td>
-			<td><button className="rowbutton" type="submit" onClick={this.handleEdit}>Edit</button></td>
-			<td><button className="rowbutton" type="submit" value ={this.props.data.homeworkId} onClick={this.handleDelete}>Delete</button></td>
+			<td> < img src={this.state.editIcon} type="submit" alt="Edit" onClick={this.handleEdit} /></td>
+			<td> < img src={this.state.deleteIcon} type="submit" alt="Delete" value={this.props.data.homeworkId} onClick={this.handleDelete} /></td>
 		</tr>
 		}
 		else if(this.state.student === true){
@@ -78,8 +82,8 @@ class TableRow  extends Component {
 				<td><input type="text" name="description" ref={(value)=>{this.description=value}} defaultValue={this.props.data.description} /></td>
 				<td><input type="text" name="deadline" ref={(value)=>{this.deadline=value}} defaultValue={this.props.data.deadline} /></td>
 				<td>{this.props.data.teacherId}</td>
-				<td><button className="rowbutton" type="submit" onClick={this.handleCancel} >Cancel</button></td>
-				<td><button className="rowbutton" type="submit" onClick={this.handleSave} value={this.props.id}>Save</button></td>
+				<td> < img src={this.state.cancelIcon} type="submit" alt="Cancel" onClick={this.handleCancel} style={{}}/></td>
+				<td> < img src={this.state.saveIcon} type="submit" alt="Save" value={this.props.id} onClick={this.handleSave} style={{padding:"2%"}}/></td>
 			</tr>
 		}
 

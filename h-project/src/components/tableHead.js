@@ -25,6 +25,7 @@ class TableHead extends Component{
 				<td>Description</td>
 				<td>Deadline</td>
 				<td>Teacher Id</td>
+				<td>Actions</td>
 			</tr>
 		}
 		return(
