@@ -1,0 +1,22 @@
+.login{
+	width: 280px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.login h1{
+	font-size: 40px;
+	border-bottom: 6px solid #E94E3B;
+	margin-bottom: 3%;
+	padding: 12%;
+}
+.inputDiv{
+	width: 100%;
+	overflow: hidden;
+	font-size: 20px;
+	padding: 2% ;
+	margin: 2%;
+	border-bottom: 1px groove;
+}
