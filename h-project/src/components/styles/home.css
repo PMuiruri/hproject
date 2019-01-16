@@ -1,0 +1,147 @@
+body{
+	font-family: 'Oswald', sans-serif;
+	font-size: 20px;
+	margin: auto;
+	background-image: url("/images/background5.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: rgb(7, 25, 53);
+	display: grid;
+}
+/* Global */
+.grid-2{
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	margin: auto;
+}
+.left{
+	grid-column:1;
+	width:20%;
+}
+.right{
+	grid-column:2;
+	overflow-y: hidden;
+}
+form{
+	vertical-align: middle;
+ 	line-height: 24px;
+	font-weight: 400;
+ 	font-size: 16px;
+	padding: 2%;
+	margin: 4% 1%;
+	white-space: nowrap;
+	border: 2px groove;
+}
+
+input {
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	font-size: 18px;
+	background-color: #fff;
+	width: auto;
+ 	padding: 0.5%;
+	margin: 0.2% 0.5%;
+ 	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.selection{
+	display: inline;
+	width: 30%;
+	margin-top: 10%;
+	padding: 2% 19%;
+	border: solid 5px #3B385C;
+	font-size: 1.5em;
+}
+ul{
+	margin: 0;
+	padding: 0;
+}
+h2{
+	padding: 2%;
+	text-align: center;
+	text-rendering: optimizeLegibility;
+	border-bottom: 2px groove;
+}
+.main-nav{
+	top: 0;
+	position: fixed;
+	height: 10%;
+	padding: 1% 0;
+}
+header{
+	min-height: 100px;
+}
+header a{
+	text-decoration: none;
+	color: white;
+}
+header li{
+	display: inline;
+	padding: 0 20px 0 20px;
+	font-size: 16px;
+}
+header #branding{
+	float: left;
+}
+header #branding h1{
+	margin: 0;
+}
+header nav{
+	float: right;
+	margin-top: 20px;
+
+}
+header .highlight, header .active a{
+	border-bottom: solid 5px orange;
+}
+header a:hover{
+	border-bottom: solid 5px red;
+	font-weight: bold;
+}
+.hello{
+	align-content: center;
+	text-align: center;
+}
+.bot-img{
+	height: 360px;
+	width: 280px;
+	background-image: url("/images/bot4.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	margin: 2rem auto;
+}
+.hello p{
+	margin: 2rem auto;
+	color: white;
+	height: auto;
+	width: 60%;
+}
+.typewriter{
+	padding: 0;
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid orange; /* The typwriter cursor */
+	white-space: nowrap;
+  margin: 0; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em; /* Adjust as needed */
+  animation:
+    typing 3.5s steps(40, end),
+    blink-caret .75s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0% }
+  to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+}
+
+footer{
+	margin-top: 2rem;
+	text-align: center;
+}
