@@ -7,29 +7,31 @@ class Login extends Component {
 	render() {
 		return (
 			<center>
-			<form style={{border: 'none'}}>
-			<div className="login">
-			<h1>Login</h1>
-			<div className="inputDiv">
-				<input id="role" type="text" name="role" value="" placeholder="Select a Role" />
-			</div>
-			<div className="inputDiv">
-				<input id="user" type="text" name="username" value="" placeholder="user" />
-			</div>
-
-			<div className="inputDiv">
-				<input id="password" type="password" class="form-control" name="password" placeholder="password" />
-			</div>
+			<form className="loginBox" style={{border: 'none'}}>
+				<div className="loginBox">
+				<img src="/images/bot4.png" alt="user" className="user" />
+				<h2>Login</h2>
+				<div>
+				<select placeholder="Please select one" >
+					<option value="Student">Student</option>
+					<option value="Parent">Parent</option>
+					<option value="Teacher">Teacher</option>
+					<option value="Admin">Admin</option>
+				</select>
+				</div>
+				<div>
+					<input className="inputDiv" id="user" type="text" name="username" value="" placeholder="user" />
+					</div>
+				<div>
+					<input className="inputDiv" id="password" type="password" name="password" placeholder="password" />
+				</div>
+				<div>
+					<input type="submit" name="" value="Sign In" />
+				</div>
 
 			<div>
-					<button type="submit">Log in</button>
-			</div>
 
-			<div>
-				<label>
-					<input type="checkbox" checked="checked" name="remember" /> Remember me
-				</label>
-				<div>Forgot Username/Password?</div>
+			<div>Forgot Username/Password?</div>
 			</div>
 			</div>
 			</form>
