@@ -3,10 +3,15 @@
 const routes = require('express').Router();
 
 const initRoutes = function(storage, sendErrorPage){
-	let dataStorage = storage;
+    let dataStorage = storage;
 
+/*
+.get = gives the response specified in the function:
+takes in 2 args: (1) the url (2) the function telling express what to send back
+ */
 	routes.get('/all', (req,res)=>{
-		dataStorage.getAll()
+		dataStorage.getAll() //getAll -function is defined in the homeworkDb.js
+		//stringify-method converts JavaScript objects into strings (for sending data to a web server the data has to be a string)
 			.then(result => res.send(JSON.stringify(result)))
 			.catch(err => res.send(res, err.message));
 	});
@@ -19,7 +24,7 @@ const initRoutes = function(storage, sendErrorPage){
 	});
 
 	routes.get('/gethomework', (req,res)=>
-		res.render('gethomework', {
+		res.render('gethomework', {  //render gethomework.ejs page
 			title:'Get',
 			header:'Get',
 			action:'/gethomework'
