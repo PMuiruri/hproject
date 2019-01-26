@@ -1,9 +1,12 @@
 'use strict';
 
+//include Express Router
 const routes = require('express').Router();
 
 const initRoutes = function(storage, sendErrorPage){
     let dataStorage = storage;
+
+// ALL the routes sending a GET or POST-request (within the app) need to be listed here
 
 /*
 .get = gives the response specified in the function:
@@ -17,7 +20,7 @@ takes in 2 args: (1) the url (2) the function telling express what to send back
 	});
 
 	routes.get('/allStudents', (req,res)=>{
-		dataStorage.getAllStudent()
+		dataStorage.getAllStudent()  //getAllStudent -function is defined in the homeworkDb.js
       .then(result => res.send(JSON.stringify(result)))
 			.catch(err => res.send(res, err.message));
 			console.log(result);

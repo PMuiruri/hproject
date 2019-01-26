@@ -1,5 +1,6 @@
 'use strict';
 
+//include Express Router
 const routes = require('express').Router();
 
 const initRoutes = function(storage, sendErrorPage, sendStatusPage){

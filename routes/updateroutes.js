@@ -1,5 +1,6 @@
 'use strict';
 
+//include Express Router
 const routes = require('express').Router();
 
 module.exports = (dataStorage, sendErrorPage, sendStatusPage) =>{

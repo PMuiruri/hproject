@@ -5,7 +5,7 @@ const Database= require('./database');
 const sqlStatements= require('./sqlStatements');
 const options=require('./options');
 
-
+//use the SQL-queries from sqlStatements.json -file
 const allSql=sqlStatements.getAllhomeworkSql.join(' ');
 const homeworkSql=sqlStatements.gethomeworkSql.join(' ');
 const insertSql=sqlStatements.inserthomeworkSql.join(' ');
@@ -16,119 +16,122 @@ const getAllStudentSql=sqlStatements.getAllstudentHomeworkSql.join(' ');
 
 
 class homeworkDatabase{
-	constructor(options, debug=false){
-		this.homeworkDb=new Database(options, debug);
-	}
+    constructor(options, debug=false){
+        this.homeworkDb=new Database(options, debug);
+    }
 
-	getAll(){
-		return new Promise(async (resolve, reject)=>{
-			try{
-				let result= await this.homeworkDb.doQuery(allSql);
-				resolve(result);
+    //fetch all data
+    getAll(){
+        return new Promise(async (resolve, reject)=>{ //db operations need to be asynchronous due to delays in db responses
+            try{
+                let result= await this.homeworkDb.doQuery(allSql);
+                resolve(result);
+            }
+            catch(err){
+                reject(fatalError(err));
+            }
+        });
+    }
 
-			}
-			catch(err){
-				reject(fatalError(err));
-			}
-		});
-	}
+    //fetch all students
+    getAllStudent(){
+        return new Promise(async (resolve, reject)=>{
+            try{
+                console.log(getAllStudentSql);
+                let result= await this.homeworkDb.doQuery(getAllStudentSql);
+                console.log(result);
+                resolve(result);
+            }
+            catch(err){
+                reject(fatalError());
+            }
+        });
+    }
 
-	getAllStudent(){
-		return new Promise(async (resolve, reject)=>{
-			try{
-				console.log(getAllStudentSql);
-				let result= await this.homeworkDb.doQuery(getAllStudentSql);
-				console.log(result);
-				resolve(result);
+    //fetch a homework, based on ID
+    gethomework(homeworkId){
+        return new Promise(async (resolve, reject)=>{
+            try{
+                let result= await this.homeworkDb.doQuery(homeworkSql, +homeworkId);
+                if(result.length===0){
+                    reject(new Error(' unknown'));
+                } else{
+                    resolve(result[0]);
+                }
+            }
+            catch(err){
+                reject(fatalError(err));
+            }
+        });
+    }
 
-			}
-			catch(err){
-				reject(fatalError());
-			}
-		});
-	}
+    //add a new homework
+    insert(homework){
+        return new Promise(async (resolve,reject)=>{
+            try{
+                let result = await this.homeworkDb.doQuery(insertSql,
+                    homework.description,
+                    homework.deadline,
+                    homework.groupId,
+                    homework.teacherId
+                );
+                console.log(result);
+                if(result.affectedRows===0){
+                    reject(new Error('No homework was added'));
+                    console.log(result);
+                } else{
+                    resolve(result.insertId);
+                    //console.log('Done');
+                }
+            }
+            catch(err){
+                console.log('erroorr');
+                reject(fatalError(err));
+            }
+        });
+    }
 
-	gethomework(homeworkId){
-		return new Promise(async (resolve, reject)=>{
-			try{
-				let result= await this.homeworkDb.doQuery(homeworkSql, +homeworkId);
-				if(result.length===0){
-					reject(new Error(' unknown'));
-				} else{
-					resolve(result[0]);
-				}
-			}
-			catch(err){
-				reject(fatalError(err));
-			}
-		});
-	}
+    // update a homeworks information
+    update(homework){
+        return new Promise(async (resolve,reject)=>{
+            try{
+                let result = await this.homeworkDb.doQuery(updateSql, homework.description, homework.deadline, homework.teacherId, +homework.homeworkId);
+                if(result.affectedRows===0){
+                    reject(new Error(`No homework with id ${homework.homeworkdata} was found. No data was updated`));
+                } else{
+                    resolve(`homework with id ${homework.homeworkId} was updated`);
+                }
+            }
+            catch(err){
+                reject(fatalError(err));
+            }
+        });
+    }
 
-	insert(homework){
-		return new Promise(async (resolve,reject)=>{
-			try{
-				let result = await this.homeworkDb.doQuery(insertSql,
-					homework.description,
-					homework.deadline,
-					homework.groupId,
-					homework.teacherId
-				);
-
-				console.log(result);
-				if(result.affectedRows===0){
-					reject(new Error('No homework was added'));
-					console.log(result)
-				} else{
-					resolve(result.insertId);
-
-					console.log('Done');
-				}
-			}
-			catch(err){
-				console.log('erroorr')
-				reject(fatalError(err));
-			}
-		});
-	}
-	// function to update a homeworks information
-	update(homework){
-		return new Promise(async (resolve,reject)=>{
-			try{
-				let result = await this.homeworkDb.doQuery(updateSql, homework.description, homework.deadline, homework.teacherId, +homework.homeworkId);
-				if(result.affectedRows===0){
-					reject(new Error(`No homework with id ${homework.homeworkdata} was found. No data was updated`));
-				} else{
-					resolve(`homework with id ${homework.homeworkId} was updated`);
-				}
-			}
-			catch(err){
-				reject(fatalError(err));
-			}
-		});
-	}
-	//function to delete a homework
-	delete(homeworkId){
-		return new Promise(async (resolve, reject) =>{
-			try{
-				let result = await this.homeworkDb.doQuery(deleteSql, +homeworkId);
-				console.log(result);
-				if(result.affectedRows===0){
-					reject(new Error(`No homework with given Id ${homeworkId}. Nothing was deleted`));
-				} else{
-					resolve(`homework with id ${homeworkId} was deleted`);
-				}
-			}
-			catch(err){
-				reject(fatalError(err));
-			}
-		});
-	}
-}//end of class
+    // delete a homework
+    delete(homeworkId){
+        return new Promise(async (resolve, reject) =>{
+            try{
+                let result = await this.homeworkDb.doQuery(deleteSql, +homeworkId);
+                console.log(result);
+                if(result.affectedRows===0){
+                    reject(new Error(`No homework with given Id ${homeworkId}. Nothing was deleted`));
+                } else{
+                    resolve(`homework with id ${homeworkId} was deleted`);
+                }
+            }
+            catch(err){
+                reject(fatalError(err));
+            }
+        });
+    }
+}
+//end of class
 
 module.exports=function initDataStorage(debug=false){
-	return new homeworkDatabase(options, debug);
+    return new homeworkDatabase(options, debug);
 };
 
 function fatalError(err){
-	return new Error(`Sorry! Error in our program. ${err.message}`);
+    return new Error(`Sorry! Error in our program. ${err.message}`);
 }
