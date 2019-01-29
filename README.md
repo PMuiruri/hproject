@@ -23,7 +23,7 @@ There are four main users teacher, student, parent and administrator
   -react-dom
   - react-router-dom 4.3.1
 - Create the database using the homeworkdatabase.sql file in Database folder
-  -Run command `mysql -u username -p database_name < homeworkdatabase.sql`
+  -Run command `mysql -u robot username -p secret database_name < homeworkdatabase.sql`
 -Change directory to the Frontend h-project folder 
   - start the client side by running `npm start`
 -Change directory to the Backend h-project folder 
