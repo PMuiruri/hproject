@@ -26,9 +26,9 @@ There are four main users teacher, student, parent and administrator
   -Run command `mysql -u robot username -p secret database_name < homeworkdatabase.sql`
 
 ## Getting started
--Change directory to the Frontend h-project folder 
+- Change directory to the Frontend h-project folder 
   - start the client side by running `npm start`
--Change directory to the Backend h-project folder 
+- Change directory to the Backend h-project folder 
   - start node server using command `node index`
 - start the mysql database
 - The app can be accessed on http://localhost:3000
