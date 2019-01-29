@@ -12,7 +12,7 @@ There are four main users teacher, student, parent and administrator
 ### Admin
 - Can add, edit, delete and view all homeworks
 
-## Getting started
+## Installations
 - Clone the project from this git repository
 - install all backend dependancies including
   - cors 2.85
@@ -24,6 +24,8 @@ There are four main users teacher, student, parent and administrator
   - react-router-dom 4.3.1
 - Create the database using the homeworkdatabase.sql file in Database folder
   -Run command `mysql -u robot username -p secret database_name < homeworkdatabase.sql`
+
+## Getting started
 -Change directory to the Frontend h-project folder 
   - start the client side by running `npm start`
 -Change directory to the Backend h-project folder 
