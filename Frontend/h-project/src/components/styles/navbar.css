@@ -1,0 +1,26 @@
+nav{
+	top: 0;
+	position: fixed;
+	height: 10%;
+	padding: 1% 0;
+	color: inherit;
+	text-align: center;
+	width: 80%;
+}
+a{
+	text-decoration: none;
+	color: inherit;
+}
+ul{
+	border-bottom: 2px solid white;
+}
+
+ul, li{
+	display: inline-block;
+	list-style-type: none;
+	padding: 0 20px 0 20px;
+	font-size: 16px;
+}
+ul{
+	border-bottom: 2px solid white;
+}
